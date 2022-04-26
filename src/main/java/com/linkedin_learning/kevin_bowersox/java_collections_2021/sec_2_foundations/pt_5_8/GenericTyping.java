@@ -1,6 +1,6 @@
-package com.kevinbowersox.lil.learning_java_collections_2021.sec_2_foundations.pt_5_8;
+package com.linkedin_learning.kevin_bowersox.java_collections_2021.sec_2_foundations.pt_5_8;
 
-import com.kevinbowersox.lil.learning_java_collections_2021.sec_1_intro.Room;
+import com.linkedin_learning.kevin_bowersox.java_collections_2021.sec_1_intro.Room;
 
 import java.util.ArrayList;
 import java.util.Collection;

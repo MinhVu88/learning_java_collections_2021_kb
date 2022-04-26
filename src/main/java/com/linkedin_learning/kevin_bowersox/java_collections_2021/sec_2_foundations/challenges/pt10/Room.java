@@ -1,14 +1,10 @@
-package com.kevinbowersox.lil.learning_java_collections_2021.sec_2_foundations.challenges.pt9;
-
-import java.util.Objects;
+package com.linkedin_learning.kevin_bowersox.java_collections_2021.sec_2_foundations.challenges.pt10;
 
 public class Room {
 	private String name;
 	private String type;
 	private int capacity;
 	private double rate;
-
-	public Room() {}
 
 	public Room(String name, String type, int capacity, double rate) {
 		this.name = name;
@@ -58,18 +54,48 @@ public class Room {
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		Room room = (Room) o;
-		return capacity == room.capacity &&
-				   Double.compare(room.rate, rate) == 0 &&
-				   name.equals(room.name) &&
-					 type.equals(room.type);
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+
+		long temp;
+		temp = Double.doubleToLongBits(rate);
+
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+
+		return result;
 	}
 
 	@Override
-	public int hashCode() {
-		return Objects.hash(name, type, capacity, rate);
+	public boolean equals(Object obj) {
+		if(this == obj) {
+			return true;
+		}
+
+		if(obj == null) {
+			return false;
+		}
+
+		if(getClass() != obj.getClass()) {
+			return false;
+		}
+
+		Room other = (Room) obj;
+
+		if(name == null) {
+			if(other.name != null) {
+				return false;
+			}
+		}else if(!name.equals(other.name)) {
+			return false;
+		}
+
+		if(Double.doubleToLongBits(rate) != Double.doubleToLongBits(other.rate)) {
+			return false;
+		}
+
+		return true;
 	}
 }

@@ -1,4 +1,4 @@
-package com.kevinbowersox.lil.learning_java_collections_2021.sec_1_intro;
+package com.linkedin_learning.kevin_bowersox.java_collections_2021.sec_1_intro;
 
 public class Room {
 	private String name;

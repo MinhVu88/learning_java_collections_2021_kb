@@ -5,7 +5,7 @@
 	1.4 - Working with a collection
 	1.5 - Beyond the array
 */
-package com.kevinbowersox.lil.learning_java_collections_2021.sec_1_intro;
+package com.linkedin_learning.kevin_bowersox.java_collections_2021.sec_1_intro;
 
 import java.util.ArrayList;
 import java.util.Collection;
