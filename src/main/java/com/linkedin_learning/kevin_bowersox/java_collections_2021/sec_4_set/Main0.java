@@ -15,6 +15,8 @@ public class Main0 {
 		Room room_2 = new Room("Oxford", "Suite", 5, 225.0);
 		Room room3 = new Room("Victoria", "Suite", 5, 225.00);
 
+		System.out.println("\t\t[ HashSet ]\n");
+
 		Set<Room> uniquelyUnorderedRooms = new HashSet<>();
 
 		uniquelyUnorderedRooms.add(room1);
@@ -27,6 +29,8 @@ public class Main0 {
 													.forEach(System.out::println);
 
 		System.out.println("------------------------------------------------------------------------");
+
+		System.out.println("\t\t[ LinkedHashSet ]\n");
 
 		Set<Room> uniquelyOrderedRooms = new LinkedHashSet<>();
 
@@ -41,15 +45,20 @@ public class Main0 {
 
 		System.out.println("------------------------------------------------------------------------");
 
-		// the of() method
+		System.out.println("\t\t[ The of() method ]\n");
+
 		Set<Room> immutableSet = Set.of(room1, room2);
 
-		// UnsupportedOperationException
-		// immutableSet.add(room3);
+		try {
+			immutableSet.add(room3);
+		} catch (UnsupportedOperationException e) {
+			System.out.println("ERROR: " + e);
+		}
 
 		System.out.println("------------------------------------------------------------------------");
 
-		// the copyOf() method
+		System.out.println("\t\t[ The copyOf() method ]\n");		
+
 		Set<Room> immutableCopiedSet0 = Set.copyOf(uniquelyUnorderedRooms);
 
 		immutableCopiedSet0.stream()

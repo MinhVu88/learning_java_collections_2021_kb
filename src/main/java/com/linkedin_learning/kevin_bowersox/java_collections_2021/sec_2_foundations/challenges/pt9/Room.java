@@ -10,7 +10,12 @@ public class Room {
 
 	public Room() {}
 
-	public Room(String name, String type, int capacity, double rate) {
+	public Room(
+		String name, 
+		String type, 
+		int capacity, 
+		double rate
+	) {
 		this.name = name;
 		this.type = type;
 		this.capacity = capacity;
@@ -58,10 +63,17 @@ public class Room {
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		Room room = (Room) o;
+	public boolean equals(Object obj) {
+		if(this == obj) {
+			return true;
+		}
+
+		if(obj == null || getClass() != obj.getClass()) {
+			return false;
+		}
+		
+		Room room = (Room) obj;
+		
 		return capacity == room.capacity &&
 				   Double.compare(room.rate, rate) == 0 &&
 				   name.equals(room.name) &&

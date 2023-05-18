@@ -28,6 +28,7 @@ public class Main {
 		double potentialRevenue1 = getPotentialRevenue(rooms1);
 		System.out.println("\nrooms1 | potential revenue: " + potentialRevenue1 + "\n");
 
+		// watch "Beyond the array"
 		Room[] rooms2 = new Room[3];
 		rooms2[0] = room1;
 		rooms2[1] = room2;

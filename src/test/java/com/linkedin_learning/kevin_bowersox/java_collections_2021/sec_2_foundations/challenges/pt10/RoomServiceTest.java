@@ -12,12 +12,12 @@ import org.junit.jupiter.api.Test;
 public class RoomServiceTest {
 	RoomService service;
 
-	Room cambridge = new Room("Cambridge", "Premiere Room", 4, 175.00);
-	Room manchester = new Room("Manchester", "Suite", 5, 250.00);
-	Room piccadilly = new Room("Piccadilly", "Guest Room", 3, 125.00);
-	Room oxford = new Room("Oxford", "Suite", 5, 225.0);
-	Room victoria = new Room("Victoria", "Suite", 5, 225.00);
-	Room westminister = new Room("Westminister", "Premiere Room", 4, 200.00);
+	Room room1 = new Room("Cambridge", "Premiere Room", 4, 175.00);
+	Room room2 = new Room("Manchester", "Suite", 5, 250.00);
+	Room room3 = new Room("Piccadilly", "Guest Room", 3, 125.00);
+	Room room4 = new Room("Oxford", "Suite", 5, 225.0);
+	Room room5 = new Room("Victoria", "Suite", 5, 225.00);
+	Room room6 = new Room("Westminister", "Premiere Room", 4, 200.00);
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -31,8 +31,8 @@ public class RoomServiceTest {
 
 	@Test
 	void testHasRoom() {
-		assertFalse(this.service.hasRoom(this.manchester));
-		assertTrue(this.service.hasRoom(this.cambridge));
+		assertFalse(this.service.hasRoom(this.room2));
+		assertTrue(this.service.hasRoom(this.room1));
 	}
 
 	@Test
@@ -40,10 +40,10 @@ public class RoomServiceTest {
 		Room[] rooms = this.service.asArray();
 
 		assertEquals(4, rooms.length);
-		assertEquals(this.piccadilly, rooms[0]);
-		assertEquals(this.cambridge, rooms[1]);
-		assertEquals(this.victoria, rooms[2]);
-		assertEquals(this.westminister, rooms[3]);
+		assertEquals(this.room3, rooms[0]);
+		assertEquals(this.room1, rooms[1]);
+		assertEquals(this.room5, rooms[2]);
+		assertEquals(this.room6, rooms[3]);
 	}
 
 	@Test

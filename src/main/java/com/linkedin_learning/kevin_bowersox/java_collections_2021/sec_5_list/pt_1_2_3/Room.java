@@ -9,7 +9,12 @@ public class Room {
 
 	public Room() {}
 
-	public Room(String name, String type, int capacity, double rate) {
+	public Room(
+		String name, 
+		String type, 
+		int capacity, 
+		double rate
+	) {
 		this.name = name;
 		this.type = type;
 		this.capacity = capacity;
@@ -101,7 +106,7 @@ public class Room {
 			if(other.name != null) {
 				return false;
 			}
-		}else if(!name.equals(other.name)) {
+		} else if(!name.equals(other.name)) {
 			return false;
 		}
 

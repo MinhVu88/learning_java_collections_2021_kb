@@ -1,4 +1,4 @@
-package com.linkedin_learning.kevin_bowersox.java_collections_2021.sec_4_set;
+package com.linkedin_learning.kevin_bowersox.java_collections_2021.sec_3_iterating_collections.pt_1_6;
 
 public class Room {
 	private String name;
@@ -73,21 +73,15 @@ public class Room {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-
 		long temp;
 		temp = Double.doubleToLongBits(rate);
-
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-
 		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		System.out.format("Comparing %s with %s%n", this.name, ((Room) obj).name);
-
 		if(this == obj) {
 			return true;
 		}

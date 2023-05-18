@@ -1,4 +1,4 @@
-package com.linkedin_learning.kevin_bowersox.java_collections_2021.sec_4_set;
+package com.linkedin_learning.kevin_bowersox.java_collections_2021.sec_7_map.pt_1_6;
 
 public class Room {
 	private String name;
@@ -6,8 +6,6 @@ public class Room {
 	private int capacity;
 	private double rate;
 	private boolean petFriendly;
-
-	public Room() {}
 
 	public Room(
 		String name, 
@@ -52,7 +50,7 @@ public class Room {
 	public void setRate(double rate) {
 		this.rate = rate;
 	}
-
+	
 	public boolean isPetFriendly() {
 		return petFriendly;
 	}
@@ -63,9 +61,9 @@ public class Room {
 
 	@Override
 	public String toString() {
-		return "Room name: " + name +
-					 " | type: " + type +
-					 " | capacity: " + capacity +
+		return "Room name: " + name + 
+					 " | type: " + type + 
+					 " | capacity: " + capacity + 
 					 " | rate: " + rate;
 	}
 
@@ -73,21 +71,15 @@ public class Room {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-
 		long temp;
 		temp = Double.doubleToLongBits(rate);
-
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-
 		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		System.out.format("Comparing %s with %s%n", this.name, ((Room) obj).name);
-
 		if(this == obj) {
 			return true;
 		}
@@ -101,7 +93,7 @@ public class Room {
 		}
 
 		Room other = (Room) obj;
-
+		
 		if(name == null) {
 			if(other.name != null) {
 				return false;

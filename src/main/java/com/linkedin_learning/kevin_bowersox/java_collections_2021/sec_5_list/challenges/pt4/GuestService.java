@@ -28,6 +28,8 @@ public class GuestService {
 		 *  order they were inserted.
 		 */
 		if(guest.isLoyaltyProgramMember() && !this.checkinList.isEmpty()) {
+			// the initialization statement/index counter is placed outside of the for loop's declaration,
+			// so that it can be accessed later, outside of the for loop.
 			int i = 0;
 
 			for(; i < this.checkinList.size(); i++) {
@@ -39,7 +41,7 @@ public class GuestService {
 			}
 
 			this.checkinList.add(i, guest);
-		}else {
+		} else {
 			this.checkinList.add(guest);
 		}
 	}

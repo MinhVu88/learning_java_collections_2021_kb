@@ -58,7 +58,10 @@ public class Car {
 	public boolean equals(Object object) {
 		Car car1 = (Car) object;
 
-		System.out.format("Comparing %s %s with %s %s %n", this.make, this.model, car1.make, car1.model);
+		System.out.format(
+			"\tComparing %s %s with %s %s %n", 
+			this.make, this.model, car1.make, car1.model
+		);
 
 		if(this == object) {
 			return true;
@@ -78,7 +81,7 @@ public class Car {
 			if(car2.make != null) {
 				return false;
 			}
-		}else if(!make.equals(car2.make)) {
+		} else if(!make.equals(car2.make)) {
 			return false;
 		}
 
@@ -86,7 +89,7 @@ public class Car {
 			if(car2.model != null) {
 				return false;
 			}
-		}else if(!model.equals(car2.model)) {
+		} else if(!model.equals(car2.model)) {
 			return false;
 		}
 

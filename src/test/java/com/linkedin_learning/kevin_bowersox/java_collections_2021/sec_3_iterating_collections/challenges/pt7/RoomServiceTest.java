@@ -7,9 +7,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Arrays;
 import java.util.Collection;
 
-import com.linkedin_learning.kevin_bowersox.java_collections_2021.sec_3_iterating_collections.Room;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import com.linkedin_learning.kevin_bowersox.java_collections_2021.sec_3_iterating_collections.pt_1_6.Room;
 
 class RoomServiceTest {
 	RoomService service;
@@ -17,19 +18,18 @@ class RoomServiceTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		Room cambridge = new Room("Cambridge", "Premiere Room", 4, 175.00);
-		Room manchester = new Room("Manchester", "Suite", 5, 250.00);
-		Room piccadilly = new Room("Piccadilly", "Guest Room", 3, 125.00);
-		Room oxford = new Room("Oxford", "Suite", 5, 225.0);
-		Room victoria = new Room("Victoria", "Suite", 5, 225.00);
-		Room westminister = new Room("Westminister", "Premiere Room", 4, 200.00);
+		Room room1 = new Room("Cambridge", "Premiere Room", 4, 175.00);
+		Room room2 = new Room("Manchester", "Suite", 5, 250.00);
+		Room room3 = new Room("Piccadilly", "Guest Room", 3, 125.00);
+		Room room4 = new Room("Oxford", "Suite", 5, 225.0);
+		Room room5 = new Room("Victoria", "Suite", 5, 225.00);
+		Room room6 = new Room("Westminister", "Premiere Room", 4, 200.00);
 
-		this.rooms = new Room[] { cambridge, manchester, piccadilly, oxford, victoria, westminister };
+		this.rooms = new Room[] { room1, room2, room3, room4, room5, room6 };
 
 		this.service = new RoomService();
 
 		this.service.createRooms(rooms);
-
 	}
 
 	@Test
@@ -48,7 +48,17 @@ class RoomServiceTest {
 	void testGetRoomsByCapacity() {
 		Collection<Room> roomsWithCapacity = this.service.getRoomsByCapacity(4);
 
-		assertTrue(roomsWithCapacity.containsAll(Arrays.asList(rooms[0], rooms[1], rooms[3], rooms[4], rooms[5])));
+		assertTrue(
+			roomsWithCapacity.containsAll(
+				Arrays.asList(
+					rooms[0], 
+					rooms[1], 
+					rooms[3], 
+					rooms[4], 
+					rooms[5]
+				)
+			)
+		);
 	}
 
 	@Test

@@ -1,9 +1,24 @@
+/*
+	5.1 - List interface
+	5.2 - List implementations
+	5.3 - ArrayList
+*/
 package com.linkedin_learning.kevin_bowersox.java_collections_2021.sec_5_list.pt_1_2_3;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
+	public static void print(List<Guest> list) {
+		System.out.format("%n--List Contents--%n");
+
+		for(int x = 0; x < list.size(); x++) {
+			Guest guest = list.get(x);
+
+			System.out.format("%x: %s %n", x, guest.toString());
+		}
+	}
+
 	public static void main(String[] args) {
 		Guest guest1 = new Guest("John", "Doe", false);
 		Guest guest2 = new Guest("Maria", "Doe", false);
@@ -27,16 +42,9 @@ public class Main {
 		checkinList.remove(checkinList.size() - 1);
 		print(checkinList);
 
-		System.out.println("John's index position in the list: " + checkinList.indexOf(guest1));
-	}
-
-	public static void print(List<Guest> list) {
-		System.out.format("%n--List Contents--%n");
-
-		for (int x = 0; x < list.size(); x++) {
-			Guest guest = list.get(x);
-
-			System.out.format("%x: %s %n", x, guest.toString());
-		}
+		System.out.println(
+			"\n" + guest1.getFirstName() + "'s index position in the list: " + 
+			checkinList.indexOf(guest1)
+		);
 	}
 }

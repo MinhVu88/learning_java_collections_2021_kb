@@ -1,11 +1,10 @@
 // 3.3 - Modifying collections while iterating
 package com.linkedin_learning.kevin_bowersox.java_collections_2021.sec_3_iterating_collections.pt_1_6;
 
-import com.linkedin_learning.kevin_bowersox.java_collections_2021.sec_3_iterating_collections.Room;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
 public class Main1 {
@@ -19,6 +18,20 @@ public class Main1 {
 
 		room3.setPetFriendly(true);
 		room4.setPetFriendly(true);
+
+		try {
+			for(Room room : rooms) {
+				if(room.isPetFriendly()) {
+					rooms.remove(room);
+				}
+			}	
+		} catch(ConcurrentModificationException e) {
+			System.out.println("ERROR: " + e);
+		}
+
+		rooms.stream().forEach(room -> System.out.println("room: " + room.getName()));
+		
+		System.out.println("------------------------------------------------------------------------");
 
 		// without Iterator
 		Collection<Room> petFriendlyRooms = new ArrayList<>();

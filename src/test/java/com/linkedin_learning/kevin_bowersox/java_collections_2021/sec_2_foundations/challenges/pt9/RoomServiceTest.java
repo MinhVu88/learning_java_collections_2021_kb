@@ -10,12 +10,12 @@ import org.junit.jupiter.api.Test;
 public class RoomServiceTest {
 	RoomService service;
 
-	Room cambridge = new Room("Cambridge", "Premiere Room", 4, 175.00);
-	Room manchester = new Room("Manchester", "Suite", 5, 250.00);
-	Room piccadilly = new Room("Piccadilly", "Guest Room", 3, 125.00);
-	Room oxford = new Room("Oxford", "Suite", 5, 225.0);
-	Room victoria = new Room("Victoria", "Suite", 5, 225.00);
-	Room westminister = new Room("Westminister", "Premiere Room", 4, 200.00);
+	Room room1 = new Room("Cambridge", "Premiere Room", 4, 175.00);
+	Room room2 = new Room("Manchester", "Suite", 5, 250.00);
+	Room room3 = new Room("Piccadilly", "Guest Room", 3, 125.00);
+	Room room4 = new Room("Oxford", "Suite", 5, 225.0);
+	Room room5 = new Room("Victoria", "Suite", 5, 225.00);
+	Room room6 = new Room("Westminister", "Premiere Room", 4, 200.00);
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -24,7 +24,6 @@ public class RoomServiceTest {
 		this.service.createRoom("Piccadilly", "Guest Room", 3, 125.00);
 		this.service.createRoom("Cambridge", "Premiere Room", 3, 175.00);
 		this.service.createRoom("Victoria", "Suite", 5, 225.00);
-
 	}
 
 	@Test
@@ -36,7 +35,7 @@ public class RoomServiceTest {
 
 	@Test
 	void testCreateRooms() {
-		Room[] newRooms = { this.westminister, this.oxford, this.manchester };
+		Room[] newRooms = { this.room6, this.room4, this.room2 };
 
 		this.service.createRooms(newRooms);
 
@@ -48,7 +47,7 @@ public class RoomServiceTest {
 		this.service.removeRoom(new Room("Victoria", "Suite", 5, 225.00));
 
 		assertEquals(2, this.service.getInventory().size());
-		assertFalse(this.service.getInventory().contains(victoria));
+		assertFalse(this.service.getInventory().contains(room5));
 	}
 
 	@Test

@@ -1,15 +1,24 @@
-package com.linkedin_learning.kevin_bowersox.java_collections_2021.sec_3_iterating_collections;
+package com.linkedin_learning.kevin_bowersox.java_collections_2021.sec_8_collections_utilities;
 
-public class Room {
+import java.util.Comparator;
+
+public class Room implements Comparable<Room> {
+	public static Comparator<Room> RATE_COMPARATOR = Comparator.comparing(Room::getRate)
+																														 .thenComparing(Room::getName)
+																														 .thenComparing(Room::getType);
+
 	private String name;
 	private String type;
 	private int capacity;
 	private double rate;
 	private boolean petFriendly;
 
-	public Room() {}
-
-	public Room(String name, String type, int capacity, double rate) {
+	public Room(
+		String name, 
+		String type, 
+		int capacity, 
+		double rate
+	) {
 		this.name = name;
 		this.type = type;
 		this.capacity = capacity;
@@ -47,7 +56,7 @@ public class Room {
 	public void setRate(double rate) {
 		this.rate = rate;
 	}
-
+	
 	public boolean isPetFriendly() {
 		return petFriendly;
 	}
@@ -58,9 +67,9 @@ public class Room {
 
 	@Override
 	public String toString() {
-		return "Room name: " + name +
-					 " | type: " + type +
-					 " | capacity: " + capacity +
+		return "Room name: " + name + 
+					 " | type: " + type + 
+					 " | capacity: " + capacity + 
 					 " | rate: " + rate;
 	}
 
@@ -68,14 +77,10 @@ public class Room {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-
 		long temp;
 		temp = Double.doubleToLongBits(rate);
-
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-
 		return result;
 	}
 
@@ -88,25 +93,32 @@ public class Room {
 		if(obj == null) {
 			return false;
 		}
-
+		
 		if(getClass() != obj.getClass()) {
 			return false;
 		}
 
 		Room other = (Room) obj;
-
+		
 		if(name == null) {
 			if(other.name != null) {
 				return false;
 			}
-		}else if(!name.equals(other.name)) {
+		} else if(!name.equals(other.name)) {
 			return false;
 		}
-
+		
 		if(Double.doubleToLongBits(rate) != Double.doubleToLongBits(other.rate)) {
 			return false;
 		}
-
+		
 		return true;
+	}
+
+	@Override
+	public int compareTo(Room room) {
+		int result = this.getName().compareTo(room.getName());
+
+		return result != 0 ? result : this.getType().compareTo(room.getType());
 	}
 }

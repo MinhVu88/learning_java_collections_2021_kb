@@ -1,4 +1,4 @@
-package com.linkedin_learning.kevin_bowersox.java_collections_2021.sec_5_list.pt_1_2_3;
+package com.linkedin_learning.kevin_bowersox.java_collections_2021.sec_7_map.pt_1_6;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,10 +56,8 @@ public class Guest {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
-
 		return result;
 	}
 
@@ -78,7 +76,7 @@ public class Guest {
 		}
 
 		Guest other = (Guest) obj;
-
+		
 		if(firstName == null) {
 			if(other.firstName != null) {
 				return false;
@@ -94,12 +92,12 @@ public class Guest {
 		} else if(!lastName.equals(other.lastName)) {
 			return false;
 		}
-
+		
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return String.format("%s %s", this.firstName, this.lastName);
+		return String.format("%s %s", this.firstName, this.lastName); 
 	}
 }

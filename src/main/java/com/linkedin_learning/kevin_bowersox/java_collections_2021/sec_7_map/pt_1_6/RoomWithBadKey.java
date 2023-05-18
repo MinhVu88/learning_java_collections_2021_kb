@@ -1,14 +1,13 @@
-package com.linkedin_learning.kevin_bowersox.java_collections_2021.sec_1_intro;
+package com.linkedin_learning.kevin_bowersox.java_collections_2021.sec_7_map.pt_1_6;
 
-public class Room {
+public class RoomWithBadKey {
 	private String name;
 	private String type;
 	private int capacity;
 	private double rate;
+	private boolean petFriendly;
 
-	public Room() {}
-
-	public Room(
+	public RoomWithBadKey(
 		String name, 
 		String type, 
 		int capacity, 
@@ -51,12 +50,12 @@ public class Room {
 	public void setRate(double rate) {
 		this.rate = rate;
 	}
+	
+	public boolean isPetFriendly() {
+		return petFriendly;
+	}
 
-	@Override
-	public String toString() {
-		return "Room name: " + name +
-					 " | type: " + type +
-					 " | capacity: " + capacity +
-					 " | rate: " + rate;
+	public void setPetFriendly(boolean petFriendly) {
+		this.petFriendly = petFriendly;
 	}
 }

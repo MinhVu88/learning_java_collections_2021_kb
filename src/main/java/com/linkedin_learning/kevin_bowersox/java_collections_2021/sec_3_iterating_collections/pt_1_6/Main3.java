@@ -1,8 +1,6 @@
 // 3.6 - Stream operations
 package com.linkedin_learning.kevin_bowersox.java_collections_2021.sec_3_iterating_collections.pt_1_6;
 
-import com.linkedin_learning.kevin_bowersox.java_collections_2021.sec_3_iterating_collections.Room;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,7 +20,12 @@ public class Main3 {
 
 		Collection<Room> petFriendlyRooms0 = new ArrayList<>();
 
-		// not recommended -> explained in the vid
+		/* NOT RECOMMENDED! 
+			- We're doing 2 things here: we're passing in an external object (petFriendlyRooms0)
+				& we're modifying it within the stream.
+			- In general, within a stream, it's ok to either work with external objects or modify them.
+			- But we should never do both inside of a stream.
+		*/
 		rooms.stream()
 				 .filter(Room::isPetFriendly)
 				 .forEach(room -> petFriendlyRooms0.add(room));
@@ -31,7 +34,8 @@ public class Main3 {
 
 		System.out.println("------------------------------------------------------------------------");
 
-		// Ops 1 & 2: collect & map
+		System.out.println("\t\t[ Operations 1 & 2: collect (terminal op) & map ]\n");
+
 		Collection<Room> petFriendlyRooms1 = rooms.stream()
 																						  .filter(Room::isPetFriendly)
 																						  .collect(Collectors.toList());
@@ -42,7 +46,8 @@ public class Main3 {
 
 		System.out.println("------------------------------------------------------------------------");
 
-		// Ops 3 & 4: mapToDouble & sum
+		System.out.println("\t\t[ Operations 3 & 4: mapToDouble & sum ]\n");
+
 		double totalRevenues = petFriendlyRooms1.stream()
 																					  .mapToDouble(Room::getRate)
 																					  .sum();

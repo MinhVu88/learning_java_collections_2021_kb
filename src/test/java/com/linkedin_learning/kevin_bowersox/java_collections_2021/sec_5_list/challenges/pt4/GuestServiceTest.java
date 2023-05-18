@@ -14,99 +14,100 @@ import org.junit.jupiter.api.Test;
 class GuestServiceTest {
 	GuestService service;
 
-	Room piccadilly = new Room("Piccadilly", "Guest Room", 3, 125.00);
-	Room cambridge = new Room("Cambridge", "Premiere Room", 4, 175.00);
-	Room westminister = new Room("Westminister", "Premiere Room", 4, 175.00);
-	Room oxford = new Room("Oxford", "Suite", 5, 225.0);
-	Room victoria = new Room("Victoria", "Suite", 5, 225.0);
-	Room manchester = new Room("Manchester", "Suite", 5, 225.0);
+	Room room1 = new Room("Piccadilly", "Guest Room", 3, 125.00);
+	Room room2 = new Room("Cambridge", "Premiere Room", 4, 175.00);
+	Room room3 = new Room("Westminister", "Premiere Room", 4, 175.00);
+	Room room4 = new Room("Oxford", "Suite", 5, 225.0);
+	Room room5 = new Room("Victoria", "Suite", 5, 225.0);
+	Room room6 = new Room("Manchester", "Suite", 5, 225.0);
 
-	Guest john, maria, sonia, siri, bob;
+	Guest guest1, guest2, guest3, guest4, guest5;
 
 	@BeforeEach
 	void setUp() throws Exception {
 		this.service = new GuestService();
 
-		john = new Guest("John", "Doe", false);
-		john.getPreferredRooms().addAll(List.of(oxford, victoria, manchester));
+		guest1 = new Guest("John", "Doe", false);
+		guest1.getPreferredRooms().addAll(List.of(room4, room5, room6));
 
-		maria = new Guest("Maria", "Doe", true);
-		maria.getPreferredRooms().addAll(List.of(cambridge, oxford));
+		guest2 = new Guest("Maria", "Doe", true);
+		guest2.getPreferredRooms().addAll(List.of(room2, room4));
 
-		sonia = new Guest("Sonia", "Doe", true);
-		sonia.getPreferredRooms().addAll(List.of(cambridge));
+		guest3 = new Guest("Sonia", "Doe", true);
+		guest3.getPreferredRooms().addAll(List.of(room2));
 
-		siri = new Guest("Siri", "Doe", true);
+		guest4 = new Guest("Siri", "Doe", true);
 
-		bob = new Guest("Bob", "Doe", false);
+		guest5 = new Guest("Bob", "Doe", false);
 	}
 
 	@Test
 	void testFilterByFavoriteRoom() {
 		assertTrue(
 			GuestService.filterByFavoriteRoom(
-				List.of(john, maria, sonia, siri, bob), cambridge
-			).containsAll(List.of(maria, sonia))
+				List.of(guest1, guest2, guest3, guest4, guest5), room2
+			).containsAll(List.of(guest2, guest3))
 		);
 
 		assertFalse(
 			GuestService.filterByFavoriteRoom(
-				List.of(john, maria, sonia, siri, bob), cambridge
-			).containsAll(List.of(john, siri, sonia))
+				List.of(guest1, guest2, guest3, guest4, guest5), room2
+			).containsAll(List.of(guest1, guest4, guest3))
 		);
 
 		assertTrue(
 			GuestService.filterByFavoriteRoom(
-				List.of(john, maria, sonia, siri, bob), oxford
-			).containsAll(List.of(john))
+				List.of(guest1, guest2, guest3, guest4, guest5), room4
+			).containsAll(List.of(guest1))
 		);
 
 		assertFalse(
 			GuestService.filterByFavoriteRoom(
-				List.of(john, maria, sonia, siri, bob), oxford
-			).containsAll(List.of(maria, sonia, siri, bob))
+				List.of(guest1, guest2, guest3, guest4, guest5), room4
+			).containsAll(List.of(guest2, guest3, guest4, guest5))
 		);
 
 		assertTrue(
 			GuestService.filterByFavoriteRoom(
-				List.of(john, maria, sonia, siri, bob), victoria
+				List.of(guest1, guest2, guest3, guest4, guest5), room5
 			).isEmpty()
 		);
 	}
 
 	@Test
 	void testSwapPosition() {
-		this.service.checkIn(bob);
-		this.service.checkIn(maria);
-		this.service.checkIn(sonia);
-		this.service.checkIn(john);
-		this.service.checkIn(siri);
+		this.service.checkIn(guest5);
+		this.service.checkIn(guest2);
+		this.service.checkIn(guest3);
+		this.service.checkIn(guest1);
+		this.service.checkIn(guest4);
 
-		this.service.swapPosition(maria, john);
-		this.service.swapPosition(siri, bob);
+		this.service.swapPosition(guest2, guest1);
+		this.service.swapPosition(guest4, guest5);
 
 		List<Guest> guests = this.service.getCheckInList();
-		assertEquals(4, guests.indexOf(maria));
-		assertEquals(1, guests.indexOf(sonia));
-		assertEquals(3, guests.indexOf(siri));
-		assertEquals(2, guests.indexOf(bob));
-		assertEquals(0, guests.indexOf(john));
+		
+		assertEquals(4, guests.indexOf(guest2));
+		assertEquals(1, guests.indexOf(guest3));
+		assertEquals(3, guests.indexOf(guest4));
+		assertEquals(2, guests.indexOf(guest5));
+		assertEquals(0, guests.indexOf(guest1));
 	}
-
 
 	@Test
 	void testCheckIn() {
-		this.service.checkIn(bob);
-		this.service.checkIn(maria);
-		this.service.checkIn(sonia);
-		this.service.checkIn(john);
-		this.service.checkIn(siri);
+		this.service.checkIn(guest5);
+		this.service.checkIn(guest2);
+		this.service.checkIn(guest3);
+		this.service.checkIn(guest1);
+		this.service.checkIn(guest4);
 
 		List<Guest> guests = this.service.getCheckInList();
-		assertEquals(0, guests.indexOf(maria));
-		assertEquals(1, guests.indexOf(sonia));
-		assertEquals(2, guests.indexOf(siri));
-		assertEquals(3, guests.indexOf(bob));
-		assertEquals(4, guests.indexOf(john));
+
+		assertEquals(0, guests.indexOf(guest2));
+		assertEquals(1, guests.indexOf(guest3));
+		assertEquals(2, guests.indexOf(guest4));
+		assertEquals(3, guests.indexOf(guest5));
+		assertEquals(4, guests.indexOf(guest1));
 	}
 }

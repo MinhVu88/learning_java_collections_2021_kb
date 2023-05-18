@@ -4,8 +4,6 @@
 */
 package com.linkedin_learning.kevin_bowersox.java_collections_2021.sec_3_iterating_collections.pt_1_6;
 
-import com.linkedin_learning.kevin_bowersox.java_collections_2021.sec_3_iterating_collections.Room;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -35,13 +33,13 @@ public class Main0 {
 		while(roomsIterator2.hasNext()) {
 			Room room = roomsIterator2.next();
 
-			System.out.println("while | roomsIterator2 -> " + room.getName());
+			System.out.println("while(roomsIterator2.hasNext()) | roomsIterator2.next() -> " + room.getName());
 		}
 
 		System.out.println("------------------------------------------------------------------------");
 
-		for (Room room : rooms) {
-			System.out.println("foreach -> " + room.getName());
+		for(Room room : rooms) {
+			System.out.println("for(Room room : rooms) -> " + room.getName());
 		}
 	}
 }

@@ -1,3 +1,8 @@
+/* Object comparison: 
+	- Identity-based: determines if 2 objects are the same object in memory (Ex: obj1 == obj2).
+	- Value-based: determines if 2 objects are logically equivalent, meaning they're equal in value
+	  (Ex: obj1.equals(obj2)).
+*/
 package com.linkedin_learning.kevin_bowersox.java_collections_2021.sec_2_foundations.pt_5_8;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,18 +19,19 @@ import org.junit.jupiter.api.TestInfo;
 
 public class CarComparisonTests {
 	Collection<Car> cars;
-	Car subaru, tesla, honda;
+	Car car1, car2, car3;
 
 	@BeforeEach
 	public void setUp(TestInfo info) throws Exception {
 		System.out.format("%nPerforming %s%n", info.getTestMethod().get().getName());
 
 		this.cars = new ArrayList<>();
-		this.subaru = new Car("Subaru", "Impreza", 52000);
-		this.tesla = new Car("Tesla", "Model S", 10000);
-		this.honda = new Car("Honda", "Civic", 25000);
+		
+		this.car1 = new Car("Subaru", "Impreza", 52000);
+		this.car2 = new Car("Tesla", "Model S", 10000);
+		this.car3 = new Car("Honda", "Civic", 25000);
 
-		this.cars.addAll(Arrays.asList(subaru, this.tesla, this.honda));
+		this.cars.addAll(Arrays.asList(this.car1, this.car2, this.car3));
 	}
 
 	@AfterEach
@@ -33,13 +39,13 @@ public class CarComparisonTests {
 		System.out.format("%nResults%n");
 
 		this.cars.stream()
-						 .map(c -> String.format("%s %s", c.getMake(), c.getModel()))
+						 .map(c -> String.format("\t%s %s", c.getMake(), c.getModel()))
 						 .forEach(System.out::println);
 	}
 
 	@Test
 	public void removeTest() {
-		this.cars.remove(honda);
+		this.cars.remove(car3);
 		this.cars.remove(new Car("Subaru", "Impreza", 52000));
 
 		assertEquals(1, this.cars.size());
@@ -48,15 +54,15 @@ public class CarComparisonTests {
 	@Test
 	public void containsTest() {
 		assertTrue(this.cars.contains(new Car("Tesla", "Model S", 10000)));
-		assertTrue(this.cars.contains(honda));
-		assertTrue(this.cars.contains(subaru));
+		assertTrue(this.cars.contains(car3));
+		assertTrue(this.cars.contains(car1));
 	}
 
 	@Test
 	public void removeAllIdentityTest() {
 		this.cars.removeAll(Arrays.asList(
-			this.subaru,
-			this.tesla,
+			this.car1,
+			this.car2,
 			new Car("Honda", "Civic", 25000)
 		));
 

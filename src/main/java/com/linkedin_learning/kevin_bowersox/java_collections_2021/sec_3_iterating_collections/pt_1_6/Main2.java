@@ -4,8 +4,6 @@
 */
 package com.linkedin_learning.kevin_bowersox.java_collections_2021.sec_3_iterating_collections.pt_1_6;
 
-import com.linkedin_learning.kevin_bowersox.java_collections_2021.sec_3_iterating_collections.Room;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -24,7 +22,19 @@ public class Main2 {
 		room3.setPetFriendly(true);
 		room4.setPetFriendly(true);
 
-		// without Lambda expressions
+		System.out.println("\t\t[ THE IMPERATIVE PROGRAMMING STYLE ]\n");
+
+		for(Room room : rooms) {
+			if(room.isPetFriendly()) {
+				System.out.println("pet-friendly room: " + room.getName());
+			}
+		}
+
+		System.out.println("\n------------------------------------------------------------------------");
+
+		System.out.println("\t\t[ THE FUNCTIONAL PROGRAMMING STYLE ]\n");
+		System.out.println("\t\t~ Without Lambda expressions ~\n");
+
 		rooms.stream()
 				 .filter(new Predicate<Room>() {
 						@Override
@@ -46,15 +56,17 @@ public class Main2 {
 				 });
 
 		System.out.println("\n------------------------------------------------------------------------");
+ 
+		System.out.println("\t\t~ With Lambda expressions (without method references) ~\n");
 
-		// with Lambda expressions (without method references)
 		rooms.stream()
 				 .filter(room -> room.isPetFriendly())
 				 .forEach(room -> System.out.println(room.getName()));
 
 		System.out.println("------------------------------------------------------------------------");
+ 
+		System.out.println("\t\t~ With Lambda expressions & method references ~\n");
 
-		// with Lambda expressions & method references
 		rooms.stream()
 				 .filter(Room::isPetFriendly)
 				 .forEach(System.out::println);

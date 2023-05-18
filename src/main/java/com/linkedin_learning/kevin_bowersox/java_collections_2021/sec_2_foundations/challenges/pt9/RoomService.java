@@ -15,6 +15,8 @@ public class RoomService {
 
 	public Collection<Room> getInventory() {
 		// 3. Return the Room Inventory
+		// use a conversion constructor to create a copy of the inventory collection.
+		// this prevents the collection from being directly modified.
 		return new HashSet<>(this.inventory);
 	}
 
@@ -30,6 +32,7 @@ public class RoomService {
 
 	public void createRooms(Room[] rooms) {
 		// 5. Add the Rooms provided in the Array to the Room Inventory
+		// 1st, convert the rooms array into a collection, then pass it to addAll()
 		this.inventory.addAll(List.of(rooms));
 	}
 
